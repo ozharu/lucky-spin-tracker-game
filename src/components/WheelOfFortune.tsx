@@ -1,8 +1,9 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface WheelOfFortuneProps {
+  isSpinning?: boolean;
   onSpinComplete: (prize: string) => void;
 }
 
@@ -21,15 +22,22 @@ const prizes: Prize[] = [
   { id: 'double-wins', name: 'Double your wins', color: 'bg-blue-500', textColor: 'text-white', probability: 0.25 },
 ];
 
-const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ onSpinComplete }) => {
-  const [isSpinning, setIsSpinning] = useState(false);
+const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onSpinComplete }) => {
+  const [rotating, setRotating] = useState(false);
   const [rotationDegree, setRotationDegree] = useState(0);
   const wheelRef = useRef<HTMLDivElement>(null);
 
+  // React to isSpinning prop changes
+  useEffect(() => {
+    if (isSpinning && !rotating) {
+      spinWheel();
+    }
+  }, [isSpinning]);
+
   const spinWheel = () => {
-    if (isSpinning) return;
+    if (rotating) return;
     
-    setIsSpinning(true);
+    setRotating(true);
     
     // Determine the winning prize based on probability
     let randValue = Math.random();
@@ -61,7 +69,7 @@ const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ onSpinComplete }) => {
     
     // Handle the completion of the spin
     setTimeout(() => {
-      setIsSpinning(false);
+      setRotating(false);
       onSpinComplete(prizes[winningIndex].name);
       
       // Reset rotation for next spin
@@ -70,7 +78,7 @@ const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ onSpinComplete }) => {
         wheelRef.current.classList.remove('wheel-spin');
         wheelRef.current.style.transform = `rotate(${totalRotation % 360}deg)`;
       }
-    }, 4000); // Animation duration
+    }, 4000); // Animation duration matches the CSS animation duration
   };
 
   return (

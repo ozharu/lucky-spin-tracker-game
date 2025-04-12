@@ -59,6 +59,7 @@ const Index = () => {
         {/* Wheel component */}
         <div className="mb-6">
           <WheelOfFortune
+            isSpinning={isSpinning}
             onSpinComplete={handleSpinComplete}
           />
         </div>
