@@ -129,3 +129,40 @@
 .pop-animation {
   animation: pop 0.3s ease-in-out;
 }
+
+/* New neon glow animations */
+@keyframes neon-pulse {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.7)) 
+            drop-shadow(0 0 10px rgba(56, 189, 248, 0.5))
+            drop-shadow(0 0 15px rgba(56, 189, 248, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8)) 
+            drop-shadow(0 0 15px rgba(56, 189, 248, 0.6))
+            drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.7)) 
+            drop-shadow(0 0 10px rgba(56, 189, 248, 0.5))
+            drop-shadow(0 0 15px rgba(56, 189, 248, 0.3));
+  }
+}
+
+.neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.neon-text {
+  text-shadow: 0 0 5px rgba(56, 189, 248, 0.7),
+               0 0 10px rgba(56, 189, 248, 0.5),
+               0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+/* Add grid background similar to the reference image */
+.grid-bg {
+  background-image: linear-gradient(rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+}
