@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import WheelOfFortune from '@/components/WheelOfFortune';
@@ -40,7 +39,7 @@ const Index = () => {
     
     toast({
       title: "🎉 Congratulations!",
-      description: `You won: ${prize} points!`,
+      description: `You won: ${prize}!`,
       duration: 5000,
     });
   };

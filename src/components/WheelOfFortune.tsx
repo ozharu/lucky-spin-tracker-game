@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -16,14 +15,10 @@ interface Prize {
 }
 
 const prizes: Prize[] = [
-  { id: 'free-bet', name: '1000', color: 'bg-yellow-500', textColor: 'text-black', probability: 0.125 },
-  { id: 'odd-boost', name: '500', color: 'bg-red-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'bonus', name: '750', color: 'bg-orange-500', textColor: 'text-black', probability: 0.125 },
-  { id: 'jackpot', name: '5000', color: 'bg-pink-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'try-again', name: '100', color: 'bg-purple-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'double-wins', name: '200', color: 'bg-blue-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'win-50', name: '50', color: 'bg-green-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'win-250', name: '250', color: 'bg-cyan-500', textColor: 'text-black', probability: 0.125 },
+  { id: 'free-bet', name: 'Free Bet', color: 'bg-yellow-500', textColor: 'text-black', probability: 0.25 },
+  { id: 'odd-boost', name: 'Odd Boost', color: 'bg-red-500', textColor: 'text-white', probability: 0.25 },
+  { id: 'try-again', name: 'Try Again', color: 'bg-purple-500', textColor: 'text-white', probability: 0.25 },
+  { id: 'double-wins', name: 'Double Wins', color: 'bg-green-500', textColor: 'text-white', probability: 0.25 },
 ];
 
 const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onSpinComplete }) => {
