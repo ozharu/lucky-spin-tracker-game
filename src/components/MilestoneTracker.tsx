@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
+import { Check, Calendar } from 'lucide-react';
 
 interface MilestoneTrackerProps {
   playedDays: string[];
@@ -12,40 +12,47 @@ const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, currentDay }) => {
   return (
-    <div className="w-full pt-8 pb-4">
-      <h2 className="text-lg font-bold text-center mb-4">Weekly Progress</h2>
+    <div className="w-full pt-4 pb-2">
+      <div className="flex items-center justify-center mb-4 gap-2">
+        <Calendar size={18} className="text-purple-600" />
+        <h2 className="text-lg font-bold text-center text-gray-700">Weekly Progress</h2>
+      </div>
       
-      <div className="flex justify-between items-center px-2 max-w-md mx-auto">
+      <div className="relative flex justify-between items-center px-2 max-w-md mx-auto">
+        {/* Progress bar background */}
+        <div className="absolute h-1 bg-gray-200 left-0 right-0 top-[25px] -z-0"></div>
+        
+        {/* Progress bar filled */}
+        <div 
+          className="absolute h-1 bg-gradient-to-r from-purple-500 to-indigo-500 left-0 top-[25px] -z-0" 
+          style={{ 
+            width: `${(playedDays.length / daysOfWeek.length) * 100}%` 
+          }}
+        ></div>
+        
         {daysOfWeek.map((day, index) => {
           const isPlayed = playedDays.includes(day);
           const isToday = day === currentDay;
           
           return (
-            <div key={day} className="flex flex-col items-center">
-              {/* Connection line */}
-              {index < daysOfWeek.length - 1 && (
-                <div className={cn(
-                  "hidden md:block absolute h-0.5 w-10 top-[56px] ml-10",
-                  isPlayed ? "bg-green-500" : "bg-gray-300"
-                )}></div>
-              )}
-              
+            <div key={day} className="flex flex-col items-center z-10">
               {/* Day circle */}
               <div className={cn(
-                "w-10 h-10 rounded-full border-2 flex items-center justify-center relative",
+                "w-[40px] h-[40px] rounded-full flex items-center justify-center relative transition-all duration-300",
                 isPlayed 
-                  ? "bg-green-500 border-green-600" 
+                  ? "bg-gradient-to-br from-purple-500 to-indigo-600 shadow-md" 
                   : isToday 
-                    ? "bg-blue-100 border-blue-500" 
-                    : "bg-gray-100 border-gray-300"
+                    ? "bg-white border-2 border-purple-500 shadow-sm" 
+                    : "bg-white border-2 border-gray-200"
               )}>
                 {isPlayed && <Check size={18} className="text-white" />}
+                {!isPlayed && isToday && <div className="w-2 h-2 rounded-full bg-purple-500"></div>}
               </div>
               
               {/* Day label */}
               <span className={cn(
-                "text-xs mt-1 font-medium",
-                isToday ? "text-blue-500" : "text-gray-600"
+                "text-xs mt-2 font-medium",
+                isToday ? "text-purple-600" : isPlayed ? "text-indigo-600" : "text-gray-500"
               )}>
                 {day}
               </span>

@@ -3,6 +3,7 @@ import { useToast } from '@/components/ui/use-toast';
 import WheelOfFortune from '@/components/WheelOfFortune';
 import MilestoneTracker from '@/components/MilestoneTracker';
 import SpinButton from '@/components/SpinButton';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Index = () => {
   const { toast } = useToast();
@@ -44,38 +45,42 @@ const Index = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-blue-100">
-      <div className="w-full max-w-md mx-auto p-4 rounded-xl bg-white shadow-lg border border-gray-200">
-        <h1 className="text-2xl font-bold text-center mb-[10px] text-purple-900">
-          Wheel of Fortune
-        </h1>
-        
-        <div className="mb-6">
-          <WheelOfFortune
-            isSpinning={isSpinning}
-            onSpinComplete={handleSpinComplete}
-          />
+    <div className="min-h-screen flex flex-col items-center justify-start p-6 bg-gradient-to-b from-blue-50 to-blue-100">
+      <Card className="w-full max-w-md mx-auto overflow-hidden border-none shadow-xl bg-white/90 backdrop-blur-sm">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-4">
+          <h1 className="text-2xl font-bold text-center mb-[10px] text-white">
+            Wheel of Fortune
+          </h1>
         </div>
         
-        {lastPrize && (
-          <div className="pop-animation text-center mb-4 p-2 bg-yellow-100 rounded-md">
-            <h3 className="font-medium">Last Prize:</h3>
-            <p className="text-lg font-bold">{lastPrize}</p>
+        <CardContent className="p-6">
+          <div className="mb-8 mt-2">
+            <WheelOfFortune
+              isSpinning={isSpinning}
+              onSpinComplete={handleSpinComplete}
+            />
           </div>
-        )}
-        
-        <MilestoneTracker
-          playedDays={playedDays}
-          currentDay={getCurrentDay()}
-        />
-        
-        <div className="flex justify-center mt-6">
-          <SpinButton 
-            onClick={handleSpin} 
-            disabled={isSpinning}
+          
+          {lastPrize && (
+            <div className="pop-animation text-center mb-6 p-3 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg border border-amber-100 shadow-sm">
+              <h3 className="font-medium text-amber-800">Your Prize</h3>
+              <p className="text-lg font-bold text-amber-600">{lastPrize}</p>
+            </div>
+          )}
+          
+          <MilestoneTracker
+            playedDays={playedDays}
+            currentDay={getCurrentDay()}
           />
-        </div>
-      </div>
+          
+          <div className="flex justify-center mt-8">
+            <SpinButton 
+              onClick={handleSpin} 
+              disabled={isSpinning}
+            />
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
