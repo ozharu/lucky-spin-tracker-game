@@ -14,8 +14,8 @@ const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, current
   return (
     <div className="w-full pt-4 pb-2">
       <div className="flex items-center justify-center mb-4 gap-2">
-        <Calendar size={18} className="text-purple-600" />
-        <h2 className="text-lg font-bold text-center text-gray-700">Weekly Progress</h2>
+        <Calendar size={18} className="text-blue-500" />
+        <h2 className="text-lg font-bold text-center text-blue-600">Weekly Progress</h2>
       </div>
       
       <div className="relative flex justify-between items-center px-2 max-w-md mx-auto">
@@ -24,9 +24,11 @@ const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, current
         
         {/* Progress bar filled */}
         <div 
-          className="absolute h-1 bg-gradient-to-r from-purple-500 to-indigo-500 left-0 top-[25px] -z-0" 
+          className="absolute h-1 left-0 top-[25px] -z-0" 
           style={{ 
-            width: `${(playedDays.length / daysOfWeek.length) * 100}%` 
+            background: 'linear-gradient(90deg, #3b82f6, #06b6d4, #0ea5e9)',
+            width: `${(playedDays.length / daysOfWeek.length) * 100}%`,
+            boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)'
           }}
         ></div>
         
@@ -40,19 +42,24 @@ const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, current
               <div className={cn(
                 "w-[40px] h-[40px] rounded-full flex items-center justify-center relative transition-all duration-300",
                 isPlayed 
-                  ? "bg-gradient-to-br from-purple-500 to-indigo-600 shadow-md" 
+                  ? "shadow-md" 
                   : isToday 
-                    ? "bg-white border-2 border-purple-500 shadow-sm" 
+                    ? "bg-white border-2 border-blue-500 shadow-sm" 
                     : "bg-white border-2 border-gray-200"
-              )}>
-                {isPlayed && <Check size={18} className="text-white" />}
-                {!isPlayed && isToday && <div className="w-2 h-2 rounded-full bg-purple-500"></div>}
+              )}
+              style={
+                isPlayed 
+                  ? { background: 'linear-gradient(45deg, #3b82f6, #06b6d4, #0ea5e9)', boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' }
+                  : {}
+              }>
+                {isPlayed && <Check size={18} className="text-yellow-200" />}
+                {!isPlayed && isToday && <div className="w-2 h-2 rounded-full bg-blue-500"></div>}
               </div>
               
               {/* Day label */}
               <span className={cn(
                 "text-xs mt-2 font-medium",
-                isToday ? "text-purple-600" : isPlayed ? "text-indigo-600" : "text-gray-500"
+                isToday ? "text-blue-600" : isPlayed ? "text-blue-500" : "text-gray-500"
               )}>
                 {day}
               </span>

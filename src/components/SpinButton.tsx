@@ -12,18 +12,21 @@ const SpinButton: React.FC<SpinButtonProps> = ({ onClick, disabled = false }) =>
     <button
       className={`
         relative flex items-center justify-center
-        px-12 py-3 text-lg font-bold text-white
-        bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+        px-12 py-3 text-lg font-bold text-yellow-200
         rounded-full uppercase tracking-wide shadow-lg
         transition-all duration-200 transform
         hover:shadow-xl hover:translate-y-[-2px]
-        active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50
+        active:scale-95 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-50
         ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
       `}
+      style={{
+        background: 'linear-gradient(45deg, #4338ca, #3b82f6, #0ea5e9, #06b6d4)',
+        boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)'
+      }}
       onClick={onClick}
       disabled={disabled}
     >
-      <Play className="mr-2" size={22} fill="white" />
+      <Play className="mr-2" size={22} fill="currentColor" />
       Play
     </button>
   );

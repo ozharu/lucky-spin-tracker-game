@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import WheelOfFortune from '@/components/WheelOfFortune';
@@ -45,10 +46,39 @@ const Index = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-6 bg-gradient-to-b from-blue-50 to-blue-100">
-      <Card className="w-full max-w-md mx-auto overflow-hidden border-none shadow-xl bg-white/90 backdrop-blur-sm">
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-4">
-          <h1 className="text-2xl font-bold text-center mb-[10px] text-white">
+    <div 
+      className="min-h-screen flex flex-col items-center justify-start p-6" 
+      style={{
+        background: 'linear-gradient(135deg, #09203f 0%, #131a34 100%)',
+        backgroundSize: '200% 200%',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Background lines */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 opacity-20">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div 
+            key={i} 
+            className="absolute w-full h-1" 
+            style={{
+              top: `${20 + i * 15}%`,
+              background: `linear-gradient(90deg, transparent, ${['#4ADE80', '#3b82f6', '#ec4899', '#FACC15', '#06b6d4'][i % 5]}, transparent)`,
+              boxShadow: `0 0 10px ${['#4ADE80', '#3b82f6', '#ec4899', '#FACC15', '#06b6d4'][i % 5]}`,
+              animation: `wave ${7 + i}s infinite linear`,
+              transformOrigin: 'center',
+              opacity: 0.6
+            }}
+          />
+        ))}
+      </div>
+      
+      <Card className="w-full max-w-md mx-auto overflow-hidden border-none shadow-2xl bg-white/90 backdrop-blur-sm">
+        <div style={{
+          background: 'linear-gradient(45deg, #4338ca, #3b82f6, #0ea5e9, #06b6d4)',
+          padding: '1rem'
+        }}>
+          <h1 className="text-2xl font-bold text-center mb-[10px] text-yellow-200 drop-shadow-md">
             Wheel of Fortune
           </h1>
         </div>
@@ -62,9 +92,15 @@ const Index = () => {
           </div>
           
           {lastPrize && (
-            <div className="pop-animation text-center mb-6 p-3 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg border border-amber-100 shadow-sm">
+            <div 
+              className="pop-animation text-center mb-6 p-3 rounded-lg shadow-md"
+              style={{
+                background: 'linear-gradient(45deg, #fef9c3, #fef08a)',
+                border: '1px solid #fde047'
+              }}
+            >
               <h3 className="font-medium text-amber-800">Your Prize</h3>
-              <p className="text-lg font-bold text-amber-600">{lastPrize}</p>
+              <p className="text-lg font-bold text-amber-700">{lastPrize}</p>
             </div>
           )}
           
