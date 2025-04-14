@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -15,10 +16,10 @@ interface Prize {
 }
 
 const prizes: Prize[] = [
-  { id: 'free-bet', name: 'Free Bet', color: 'bg-yellow-500', textColor: 'text-black', probability: 0.25 },
-  { id: 'odd-boost', name: 'Odd Boost', color: 'bg-red-500', textColor: 'text-white', probability: 0.25 },
+  { id: 'free-bet', name: '1 Free Bet', color: 'bg-yellow-500', textColor: 'text-black', probability: 0.25 },
+  { id: 'odd-boost', name: 'Odd Boost x2', color: 'bg-red-500', textColor: 'text-white', probability: 0.25 },
   { id: 'try-again', name: 'Try Again', color: 'bg-purple-500', textColor: 'text-white', probability: 0.25 },
-  { id: 'double-wins', name: 'Double Wins', color: 'bg-green-500', textColor: 'text-white', probability: 0.25 },
+  { id: 'double-wins', name: 'Double your wins', color: 'bg-green-500', textColor: 'text-white', probability: 0.25 },
 ];
 
 const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onSpinComplete }) => {

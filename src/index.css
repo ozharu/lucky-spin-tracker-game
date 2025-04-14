@@ -1,19 +1,19 @@
 
 @keyframes neon-pulse {
   0% {
-    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)) 
-            drop-shadow(0 0 6px rgba(56, 189, 248, 0.3))
-            drop-shadow(0 0 9px rgba(56, 189, 248, 0.2));
+    filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.3)) 
+            drop-shadow(0 0 4px rgba(56, 189, 248, 0.2))
+            drop-shadow(0 0 6px rgba(56, 189, 248, 0.1));
   }
   50% {
-    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5)) 
-            drop-shadow(0 0 9px rgba(56, 189, 248, 0.4))
-            drop-shadow(0 0 12px rgba(56, 189, 248, 0.3));
+    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)) 
+            drop-shadow(0 0 5px rgba(56, 189, 248, 0.3))
+            drop-shadow(0 0 7px rgba(56, 189, 248, 0.2));
   }
   100% {
-    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)) 
-            drop-shadow(0 0 6px rgba(56, 189, 248, 0.3))
-            drop-shadow(0 0 9px rgba(56, 189, 248, 0.2));
+    filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.3)) 
+            drop-shadow(0 0 4px rgba(56, 189, 248, 0.2))
+            drop-shadow(0 0 6px rgba(56, 189, 248, 0.1));
   }
 }
 
@@ -22,7 +22,7 @@
 }
 
 .neon-text {
-  text-shadow: 0 0 3px rgba(56, 189, 248, 0.4),
-               0 0 6px rgba(56, 189, 248, 0.3),
-               0 0 9px rgba(56, 189, 248, 0.2);
+  text-shadow: 0 0 2px rgba(56, 189, 248, 0.4),
+               0 0 3px rgba(56, 189, 248, 0.3),
+               0 0 5px rgba(56, 189, 248, 0.2);
 }
