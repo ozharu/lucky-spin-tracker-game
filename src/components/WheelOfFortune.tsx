@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -16,14 +15,10 @@ interface Prize {
 }
 
 const prizes: Prize[] = [
-  { id: 'free-bet', name: '1000', color: 'bg-yellow-500', textColor: 'text-black', probability: 0.125 },
-  { id: 'odd-boost', name: '500', color: 'bg-red-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'bonus', name: '750', color: 'bg-orange-500', textColor: 'text-black', probability: 0.125 },
-  { id: 'jackpot', name: '5000', color: 'bg-pink-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'try-again', name: '100', color: 'bg-purple-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'double-wins', name: '200', color: 'bg-blue-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'win-50', name: '50', color: 'bg-green-500', textColor: 'text-white', probability: 0.125 },
-  { id: 'win-250', name: '250', color: 'bg-cyan-500', textColor: 'text-black', probability: 0.125 },
+  { id: 'free-bet', name: '1 Free Bet', color: 'bg-amber-500', textColor: 'text-white', probability: 0.25 },
+  { id: 'odd-boost', name: 'Odd Boost x2', color: 'bg-green-600', textColor: 'text-white', probability: 0.25 },
+  { id: 'try-again', name: 'Try again', color: 'bg-rose-600', textColor: 'text-white', probability: 0.25 },
+  { id: 'double-wins', name: 'Double your wins', color: 'bg-blue-600', textColor: 'text-white', probability: 0.25 },
 ];
 
 const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onSpinComplete }) => {
@@ -80,18 +75,16 @@ const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onS
   return (
     <div className="relative w-full max-w-[300px] aspect-square mx-auto">
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]"></div>
+        <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-purple-600 drop-shadow-md"></div>
       </div>
-      
-      {/* Outer glow effect */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 blur-md opacity-70"></div>
       
       <div 
         ref={wheelRef}
-        className="wheel relative w-full h-full rounded-full overflow-hidden shadow-[0_0_30px_rgba(167,139,250,0.7)] transition-transform duration-300"
+        className="wheel w-full h-full rounded-full overflow-hidden shadow-2xl border-8 border-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-transform duration-300"
         style={{ 
           transform: `rotate(${rotationDegree}deg)`,
-          boxShadow: '0 0 30px rgba(167, 139, 250, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.5)',
+          borderImage: 'linear-gradient(to right, #6366f1, #a855f7, #ec4899) 1',
+          boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)',
         }}
       >
         <div className="w-full h-full relative">
@@ -102,17 +95,16 @@ const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onS
               <div 
                 key={prize.id}
                 className={cn(
-                  "absolute w-1/2 h-1/2 origin-bottom-right flex items-start justify-center py-6 px-3",
+                  "absolute w-1/2 h-1/2 origin-bottom-right flex items-start justify-center py-4 px-2",
                   prize.color,
                   prize.textColor
                 )}
                 style={{ 
-                  transform: `rotate(${angle}deg) skew(${360 / prizes.length / 2}deg)`,
-                  boxShadow: 'inset 0 0 10px rgba(255,255,255,0.3)',
-                  backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 70%)',
+                  transform: `rotate(${angle}deg) skew(45deg)`,
+                  boxShadow: 'inset 0 0 10px rgba(0,0,0,0.1)'
                 }}
               >
-                <div className="transform text-center -translate-y-4 font-bold text-xl drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" style={{ transform: `rotate(-${angle + (360/prizes.length/2)}deg) skew(-${360 / prizes.length / 2}deg)` }}>
+                <div className="transform -rotate-[45deg] text-center -translate-y-2 font-bold drop-shadow-sm">
                   {prize.name}
                 </div>
               </div>
@@ -121,11 +113,8 @@ const WheelOfFortune: React.FC<WheelOfFortuneProps> = ({ isSpinning = false, onS
         </div>
       </div>
       
-      {/* Center hub with neon effect */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-r from-green-300 to-green-500 rounded-full z-10 flex items-center justify-center shadow-[0_0_15px_rgba(74,222,128,0.8)]">
-        <div className="w-16 h-16 bg-gradient-to-br from-green-300 to-green-600 rounded-full flex items-center justify-center border-4 border-white/20">
-          <div className="w-8 h-8 bg-green-400 rounded-full shadow-inner"></div>
-        </div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full border-4 border-purple-500 z-10 flex items-center justify-center shadow-md">
+        <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full"></div>
       </div>
     </div>
   );

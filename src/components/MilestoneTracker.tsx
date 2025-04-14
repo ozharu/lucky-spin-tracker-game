@@ -14,17 +14,17 @@ const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, current
   return (
     <div className="w-full pt-4 pb-2">
       <div className="flex items-center justify-center mb-4 gap-2">
-        <Calendar size={18} className="text-cyan-400" />
-        <h2 className="text-lg font-bold text-center text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">Weekly Progress</h2>
+        <Calendar size={18} className="text-purple-600" />
+        <h2 className="text-lg font-bold text-center text-gray-700">Weekly Progress</h2>
       </div>
       
       <div className="relative flex justify-between items-center px-2 max-w-md mx-auto">
         {/* Progress bar background */}
-        <div className="absolute h-2 bg-gray-800/50 left-0 right-0 top-[25px] -z-0 rounded-full"></div>
+        <div className="absolute h-1 bg-gray-200 left-0 right-0 top-[25px] -z-0"></div>
         
-        {/* Progress bar filled with neon glow */}
+        {/* Progress bar filled */}
         <div 
-          className="absolute h-2 bg-gradient-to-r from-cyan-400 to-blue-500 left-0 top-[25px] -z-0 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.6)]" 
+          className="absolute h-1 bg-gradient-to-r from-purple-500 to-indigo-500 left-0 top-[25px] -z-0" 
           style={{ 
             width: `${(playedDays.length / daysOfWeek.length) * 100}%` 
           }}
@@ -36,23 +36,23 @@ const MilestoneTracker: React.FC<MilestoneTrackerProps> = ({ playedDays, current
           
           return (
             <div key={day} className="flex flex-col items-center z-10">
-              {/* Day circle with neon glow effect */}
+              {/* Day circle */}
               <div className={cn(
                 "w-[40px] h-[40px] rounded-full flex items-center justify-center relative transition-all duration-300",
                 isPlayed 
-                  ? "bg-gradient-to-br from-cyan-400 to-blue-500 shadow-[0_0_10px_rgba(34,211,238,0.6)]" 
+                  ? "bg-gradient-to-br from-purple-500 to-indigo-600 shadow-md" 
                   : isToday 
-                    ? "bg-gray-900 border-2 border-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.4)]" 
-                    : "bg-gray-900 border-2 border-gray-700"
+                    ? "bg-white border-2 border-purple-500 shadow-sm" 
+                    : "bg-white border-2 border-gray-200"
               )}>
                 {isPlayed && <Check size={18} className="text-white" />}
-                {!isPlayed && isToday && <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>}
+                {!isPlayed && isToday && <div className="w-2 h-2 rounded-full bg-purple-500"></div>}
               </div>
               
               {/* Day label */}
               <span className={cn(
                 "text-xs mt-2 font-medium",
-                isToday ? "text-cyan-400" : isPlayed ? "text-cyan-400" : "text-gray-400"
+                isToday ? "text-purple-600" : isPlayed ? "text-indigo-600" : "text-gray-500"
               )}>
                 {day}
               </span>
